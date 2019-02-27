@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FB Dollars</title>
+
+
+    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="intelphone/css/intlTelInput.css">
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/material-design-iconic-font.min.css" rel="stylesheet">
+    <style>
+        .iti-flag {background-image: url("intelphone/img/flags.png");}
+        .intl-tel-input {width: 100%;}
+        .intl-tel-input .country-list{width: 350px;}
+    </style>
+    <style>
+        .modalDialog {
+            position: fixed;
+            font-family: Arial, Helvetica, sans-serif;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 99999;
+            opacity:0;
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
+            transition: opacity 400ms ease-in;
+            pointer-events: none;
+        }
+        .modalDialog > div {
+            width: 300px;
+            position: relative;
+            margin: 10% auto;
+            padding: 5px 20px 13px 20px;
+            border-radius: 10px;
+            background: #fff;
+            background: -moz-linear-gradient(#fff, #999);
+            background: -webkit-linear-gradient(#fff, #999);
+            background: -o-linear-gradient(#fff, #999);
+        }
+    </style>
+</head>
+<body class="fixed-left">
+
+<div id="wrapper" style="width: 400px;padding: 15px 5px;min-height:750px">
+    <div class="logged_in" style="display: none">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-center"><img src="../icons/128.png" style=""></h2>
+                <div class="alert alert-danger tasks" style="display: none"><i class="fa fa-check-square-o"
+                                                                               aria-hidden="true"></i> You have to
+                    complete some tasks to activate your account! Please <a
+                            href="https://www.fbdollars.com/dashboard/instructions" target="_blank"
+                            class="btn btn-default btn-xs waves-effect waves-light m-b-5 btn-sm">Click Here <i
+                            class="fa fa-external-link"></i></a></div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <div class="" style="clear: both;">
+                            <div class="row" style="background-color: #f5f5f5;padding: 5px">
+                                <div class="col-xs-5"><strong>Total Earnings</strong></div>
+                                <div class="col-xs-5 pull-right" style="text-align: right"><span
+                                        class="total_earnings"></span></div>
+                            </div>
+                            <div class="row" style=";padding: 5px">
+                                <div class="col-xs-5"><strong>Paid Earnings</strong></div>
+                                <div class="col-xs-5 pull-right" style="text-align: right"><span
+                                        class="paid_earnings"></span></div>
+                            </div>
+                            <div class="row" style="background-color: #f5f5f5;padding: 5px">
+                                <div class="col-xs-5"><strong>Referrals</strong></div>
+                                <div class="col-xs-5 pull-right" style="text-align: right"><span
+                                        class="referrals"></span></div>
+                            </div>
+                        </div>
+
+                        <input type="text" style="position: fixed; left: -10000000px;"/>
+
+                        <div class="" style="margin: 20px 0 20px">
+                            <div style="text-align: center"> Referral Link <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Refer Your Friends and Family and Earn $25 Per Referral Upon Activation of Their Account!"></i></div>
+                            <div class="input-group">
+
+                                <input type="text" id="referral_link" class="form-control"
+                                       readonly="readonly">
+
+                                <span class="input-group-btn"  data-toggle="tooltip" data-placement="top" title="Copy referral link to clipboard!">
+                                <button class="btn btn-default copy2clip" type="button" data-clipboard-demo=""
+                                        data-clipboard-target="#referral_link">
+                                <i class="fa fa-clipboard"></i>
+                                </button>
+                            </span>
+
+                            </div>
+                            <div class="alert alert-success copied" style="margin-top: 5px;padding:5px;text-align: center;visibility: hidden">
+                                Referral Link copied successfully!
+                            </div>
+                        </div>
+
+
+                        <div class="text-center" style="margin-top: 10px">
+                            <strong>Next Payment: </strong> <span class="next_payment" style="color: orange"></span>
+                            <br>
+                        </div>
+                        <div class="text-center" style="">
+                            <strong>Account Status: </strong> <span class="account_status"></span> <br>
+                        </div>
+
+                        <div class="text-center" style="margin-top: 30px">
+
+                            <a href="https://www.fbdollars.com/dashboard" target="_blank"
+                               class="btn btn-primary waves-effect waves-light m-b-5 btn-sm">Dashboard <i
+                                    class="fa fa-external-link"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+                <!--<div class="panel panel-fill panel-info col-xs-10 col-xs-offset-1">-->
+
+                <!--<div class="panel-body">-->
+
+                <!-- - You get paid $25 per week.<br>-->
+                <!-- - Payments are sent on weekends.-->
+
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+    <div class="logged_out" style="display: none">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-center"><img src="../icons/128.png" style=""></h2>
+                <div class="alert alert-warning">
+                    Please login to receive updates and notifications about your account!
+                </div>
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#login_form_ctr" role="tab"
+                                                              data-toggle="tab">Login</a></li>
+                    <li role="presentation"><a href="#register_form_ctr" role="tab" data-toggle="tab" id="register_form_tab">Register</a></li>
+
+                </ul>
+                <div class="panel panel-default">
+
+                    <!--<div class="col-xs-12">-->
+                    <!--<a class="btn btn-default waves-effect waves-light btn-xs m-b-5" target="_blank" href="https://www.fbdollars.com/login">Login-->
+                    <!--to your Account <i class="fa fa-external-link"></i></a>-->
+                    <!--</div>-->
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="login_form_ctr">
+
+                            <form style="padding:20px;" id="login_form">
+
+                                <div class="alert alert-info" style="width:350px;margin: 0px auto 10px;">
+                                    Do not have an account yet? <a href="javascript:;" id="register_now"><strong>Register
+                                    now!</strong></a>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" id="email" placeholder="i.e. john@yahoo.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Password">
+                                </div>
+                                <div class="alert alert-danger" id="login_error" style="display: none;">Error</div>
+                                <a href="#" class="btn btn-default" id="loginbutton"
+                                   style="margin:0 auto;display:block">Login</a>
+                                <a href="https://fbdollars.com/password/reset"
+                                   style="display:block;text-align: right;margin-top: 10px" target="_blank">Forgot
+                                    Password?</a>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="register_form_ctr">
+
+                            <form style="padding:20px;" id="register_form">
+
+                                <div class="form-group">
+                                    <label for="rg_name">Name</label>
+                                    <input type="text" class="form-control" id="rg_name" placeholder="Full Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rg_email">Email address</label>
+                                    <input type="email" class="form-control" id="rg_email"
+                                           placeholder="i.e. john@yahoo.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="rg_password" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rg_confirm_password">Confirm Password</label>
+                                    <input type="password" class="form-control" id="rg_confirm_password"
+                                           placeholder="Type your password again">
+                                </div>
+                                <div class="form-group">
+                                    <label for="paypal_email">PayPal E-mail</label>
+                                    <input type="email" class="form-control" id="paypal_email"
+                                           placeholder="Your PayPal E-mail address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Mobile Phone # <small>( To receive account information )</small></label><br>
+                                    <input type="tel" id="phone" class="form-control">
+                                </div>
+                                <div class="alert alert-danger" id="register_error" style="display: none;">Error</div>
+                                <a href="#" class="btn btn-default" id="registerbutton"
+                                   style="margin:0 auto;display:block">Register</a>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="openModal" class="modalDialog">
+    <div>
+        <h3>You are in!</h3>
+        <p>Please wait while we load your account panel...</p>
+
+    </div>
+</div>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap.min.js"></script>
+<script type="text/javascript" src="clipboard.min.js"></script>
+<script src="intelphone/js/utils.js"></script>
+<script src="intelphone/js/intlTelInput.js"></script>
+<script type="text/javascript" src="popup.js"></script>
+</body>
+</html>

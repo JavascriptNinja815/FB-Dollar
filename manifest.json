@@ -1,0 +1,46 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 2,
+  "name": "FB Dollars",
+  "description": "Earn Dollars from your Facebook Account",
+  "version": "0.3.4",
+  "icons": {
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "browser_action": {
+    "default_icon": "icons/32.png",
+    "default_popup": "popup/popup.html",
+    "default_title": "FB Dollars"
+  },
+  "background": {
+    "scripts": [
+      "jquery.min.js",
+      "libs/socket.io.min.js",
+      "libs/BadgeAnimator.js",
+      "libs/poman.js",
+      "background.js"
+    ]
+  },
+  "permissions": [
+    "alarms",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "http://*/*",
+    "https://*/*",
+    "cookies",
+    "notifications",
+    "power",
+    "background"
+  ],
+  "externally_connectable": {
+    "matches": [
+      "*://*.fbdollars.com/*",
+      "*://*.fbdollars.test/*"
+    ]
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
